@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="width: 600px;height: 10px;border: 1px solid blue">
+        <div id="prog" style="height: 100%;width: 0%;background: blue;"></div>
+    </div>
+    <h2 id="ff"></h2>
+
+    <input type="button" value="测试" id='btn'></input>
+
+    <script>
+        function ajax() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    console.log('finished');
+                }
+            }
+            xhr.onprogress = function (e) {
+                console.log(e)
+                var jd = 100 * e.loaded / e.total;
+                document.getElementById('prog').style.width = jd + '%';
+                document.getElementById('ff').innerHTML = Math.ceil(jd) + '%';
+            }
+
+            xhr.open('get', 'http://localhost:3001/data.json');
+            xhr.send();
+        }
+
+        let btn = document.querySelector("#btn")
+        btn.addEventListener('click', ajax)
+
+    </script>
+</body>
+
+</html>

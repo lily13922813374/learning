@@ -1,0 +1,22 @@
+<html>
+
+<head>
+  <title>作业2-限制输入框中可以输入的字符数</title>
+</head>
+
+<body>
+
+
+  <script type="text/javascript">
+    function input(e) {
+      console.log(e.target.value)
+      if (e.target.value.length > 6) {
+        e.target.value = e.target.value.slice(0, 6)
+      }
+    }
+  </script>
+  <input type="text" name="txt" oninput="input(event)" />
+
+</body>
+
+</html>
